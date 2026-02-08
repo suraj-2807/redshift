@@ -3,20 +3,34 @@
 // Register GSAP ScrollTrigger Plugin
 gsap.registerPlugin(ScrollTrigger);
 
+// ===== Detect Mobile Device =====
+const isMobile = window.innerWidth <= 768;
+
 // ===== Navigation Functionality =====
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
+function handleNavbarScroll() {
+    // On mobile (<=768px), always add scrolled class when scrolling
+    if (window.innerWidth <= 768) {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    } 
+    // On desktop (>768px), add scrolled class after 100px
+    else if (window.scrollY > 100) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+}
+
+window.addEventListener('scroll', handleNavbarScroll);
+window.addEventListener('resize', handleNavbarScroll);
 
 // Mobile menu toggle
 navToggle.addEventListener('click', () => {
@@ -47,178 +61,236 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== Hero Section Animations =====
-const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+// ===== ANIMATIONS (Desktop Only) =====
+if (!isMobile) {
+    // ===== Hero Section Animations =====
+    const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-heroTimeline
-    .from('.hero-title-main', {
-        y: 60,
+    heroTimeline
+        .from('.hero-title-main', {
+            y: 60,
+            opacity: 0,
+            duration: 1,
+            delay: 0.3
+        })
+        .from('.hero-title-sub', {
+            y: 40,
+            opacity: 0,
+            duration: 0.8
+        }, '-=0.5')
+        .from('.hero-subtitle', {
+            y: 30,
+            opacity: 0,
+            duration: 0.8
+        }, '-=0.4')
+        .from('.hero-buttons', {
+            y: 20,
+            opacity: 0,
+            duration: 0.6
+        }, '-=0.3')
+        .from('.hero-circle', {
+            scale: 0,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.2
+        }, '-=0.8')
+        .from('.hero-line', {
+            scaleX: 0,
+            duration: 1,
+            stagger: 0.15
+        }, '-=1');
+
+    // ===== Section Header Animations =====
+    gsap.utils.toArray('.section-header').forEach(header => {
+        gsap.from(header, {
+            scrollTrigger: {
+                trigger: header,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+    });
+
+    // ===== Services Cards Animation =====
+    gsap.utils.toArray('.service-card').forEach((card, index) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            },
+            y: 60,
+            opacity: 0,
+            duration: 0.7,
+            delay: index * 0.1,
+            ease: 'power3.out'
+        });
+    });
+
+    // ===== Features Animation =====
+    gsap.utils.toArray('.feature-item').forEach((item, index) => {
+        gsap.from(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            },
+            x: index % 2 === 0 ? -50 : 50,
+            opacity: 0,
+            duration: 0.7,
+            delay: index * 0.1,
+            ease: 'power3.out'
+        });
+    });
+
+    // ===== About Section Animation =====
+    gsap.from('.about-text', {
+        scrollTrigger: {
+            trigger: '.about-content',
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+        },
+        x: -60,
         opacity: 0,
-        duration: 1,
-        delay: 0.3
-    })
-    .from('.hero-title-sub', {
-        y: 40,
+        duration: 0.9,
+        ease: 'power3.out'
+    });
+
+    gsap.from('.about-visual', {
+        scrollTrigger: {
+            trigger: '.about-content',
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+        },
+        x: 60,
         opacity: 0,
-        duration: 0.8
-    }, '-=0.5')
-    .from('.hero-subtitle', {
+        duration: 0.9,
+        ease: 'power3.out'
+    });
+
+    // About stats counter animation
+    gsap.utils.toArray('.stat-number').forEach(stat => {
+        const finalValue = parseInt(stat.textContent);
+        gsap.from(stat, {
+            scrollTrigger: {
+                trigger: stat,
+                start: 'top 90%',
+                toggleActions: 'play none none none'
+            },
+            textContent: 0,
+            duration: 2,
+            ease: 'power2.out',
+            snap: { textContent: 1 },
+            onUpdate: function () {
+                stat.textContent = Math.ceil(this.targets()[0].textContent) + '+';
+            }
+        });
+    });
+
+    // ===== Contact Section Animation =====
+    gsap.from('.contact-form-container', {
+        scrollTrigger: {
+            trigger: '.contact-wrapper',
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+        },
+        x: -60,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power3.out'
+    });
+
+    gsap.from('.contact-info', {
+        scrollTrigger: {
+            trigger: '.contact-wrapper',
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+        },
+        x: 60,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power3.out'
+    });
+
+    // ===== Footer Animation =====
+    gsap.from('.footer-content', {
+        scrollTrigger: {
+            trigger: '.footer',
+            start: 'top 95%',
+            toggleActions: 'play none none none'
+        },
         y: 30,
         opacity: 0,
-        duration: 0.8
-    }, '-=0.4')
-    .from('.hero-buttons', {
-        y: 20,
-        opacity: 0,
-        duration: 0.6
-    }, '-=0.3')
-    .from('.hero-circle', {
-        scale: 0,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.2
-    }, '-=0.8')
-    .from('.hero-line', {
-        scaleX: 0,
-        duration: 1,
-        stagger: 0.15
-    }, '-=1');
-
-// ===== Navigation Animation =====
-// gsap.from('.navbar', {
-//     y: -100,
-//     opacity: 0,
-//     duration: 1,
-//     delay: 0.5,
-//     ease: 'power3.out'
-// });
-
-// ===== Section Header Animations =====
-gsap.utils.toArray('.section-header').forEach(header => {
-    gsap.from(header, {
-        scrollTrigger: {
-            trigger: header,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
+        duration: 0.6,
         ease: 'power3.out'
     });
-});
 
-// ===== Services Cards Animation =====
-gsap.utils.toArray('.service-card').forEach((card, index) => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-        },
-        y: 60,
-        opacity: 0,
-        duration: 0.7,
-        delay: index * 0.1,
-        ease: 'power3.out'
+    // ===== Parallax Effect for Hero Background Elements =====
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const circles = document.querySelectorAll('.hero-circle');
+        const lines = document.querySelectorAll('.hero-line');
+
+        circles.forEach((circle, index) => {
+            const speed = 0.1 + (index * 0.05);
+            circle.style.transform = `translate(${scrolled * speed}px, ${scrolled * speed}px)`;
+        });
+
+        lines.forEach((line, index) => {
+            const speed = 0.05 + (index * 0.03);
+            line.style.transform = `scaleX(${1 + scrolled * 0.0005})`;
+        });
     });
-});
 
-// ===== Features Animation =====
-gsap.utils.toArray('.feature-item').forEach((item, index) => {
-    gsap.from(item, {
-        scrollTrigger: {
-            trigger: item,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-        },
-        x: index % 2 === 0 ? -50 : 50,
-        opacity: 0,
-        duration: 0.7,
-        delay: index * 0.1,
-        ease: 'power3.out'
+    // ===== Button Hover Effect =====
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mouseenter', function () {
+            gsap.to(this, {
+                scale: 1.02,
+                duration: 0.2,
+                ease: 'power2.out'
+            });
+        });
+
+        btn.addEventListener('mouseleave', function () {
+            gsap.to(this, {
+                scale: 1,
+                duration: 0.2,
+                ease: 'power2.out'
+            });
+        });
     });
-});
 
-// ===== About Section Animation =====
-gsap.from('.about-text', {
-    scrollTrigger: {
-        trigger: '.about-content',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-    },
-    x: -60,
-    opacity: 0,
-    duration: 0.9,
-    ease: 'power3.out'
-});
+    // ===== Service Card Hover Effect =====
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('mouseenter', function () {
+            gsap.to(this.querySelector('.service-icon svg'), {
+                scale: 1.15,
+                rotation: 5,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
 
-gsap.from('.about-visual', {
-    scrollTrigger: {
-        trigger: '.about-content',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-    },
-    x: 60,
-    opacity: 0,
-    duration: 0.9,
-    ease: 'power3.out'
-});
-
-// About stats counter animation
-gsap.utils.toArray('.stat-number').forEach(stat => {
-    const finalValue = parseInt(stat.textContent);
-    gsap.from(stat, {
-        scrollTrigger: {
-            trigger: stat,
-            start: 'top 90%',
-            toggleActions: 'play none none none'
-        },
-        textContent: 0,
-        duration: 2,
-        ease: 'power2.out',
-        snap: { textContent: 1 },
-        onUpdate: function () {
-            stat.textContent = Math.ceil(this.targets()[0].textContent) + '+';
-        }
+        card.addEventListener('mouseleave', function () {
+            gsap.to(this.querySelector('.service-icon svg'), {
+                scale: 1,
+                rotation: 0,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
     });
-});
-
-// ===== Contact Section Animation =====
-gsap.from('.contact-form-container', {
-    scrollTrigger: {
-        trigger: '.contact-wrapper',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-    },
-    x: -60,
-    opacity: 0,
-    duration: 0.9,
-    ease: 'power3.out'
-});
-
-gsap.from('.contact-info', {
-    scrollTrigger: {
-        trigger: '.contact-wrapper',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-    },
-    x: 60,
-    opacity: 0,
-    duration: 0.9,
-    ease: 'power3.out'
-});
+}
 
 // ===== Contact Form Handling with EmailJS =====
-// IMPORTANT: Set up your EmailJS account at https://www.emailjs.com/
-// 1. Create a free account
-// 2. Add an email service (Gmail, Outlook, etc.)
-// 3. Create an email template with variables: {{from_name}}, {{from_email}}, {{message}}
-// 4. Replace the IDs below with your actual IDs
-
-const EMAILJS_PUBLIC_KEY = 'vyV6jqbBnzrlqYnze'; // Replace with your EmailJS public key
-const EMAILJS_SERVICE_ID = 'service_ehfkx71'; // Replace with your EmailJS service ID
-const EMAILJS_TEMPLATE_ID = 'template_znlt2iq'; // Replace with your EmailJS template ID
+const EMAILJS_PUBLIC_KEY = 'vyV6jqbBnzrlqYnze';
+const EMAILJS_SERVICE_ID = 'service_ehfkx71';
+const EMAILJS_TEMPLATE_ID = 'template_znlt2iq';
 
 // Initialize EmailJS
 (function () {
@@ -273,7 +345,7 @@ messageField.addEventListener('input', function () {
     if (messageLength > 0 && messageLength < 20) {
         errorElement.textContent = `Message must be at least 20 characters (${messageLength}/20)`;
         errorElement.style.display = 'block';
-        errorElement.style.color = '#fbbf24'; // Warning color
+        errorElement.style.color = '#fbbf24';
     } else if (messageLength >= 20) {
         clearFieldError('message');
     }
@@ -306,10 +378,8 @@ contactForm.addEventListener('submit', function (e) {
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
 
-    // Validation flags
     let isValid = true;
 
-    // Validate name
     if (!name) {
         showFieldError('name', 'Name is required');
         isValid = false;
@@ -318,7 +388,6 @@ contactForm.addEventListener('submit', function (e) {
         isValid = false;
     }
 
-    // Validate email
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!email) {
         showFieldError('email', 'Email is required');
@@ -328,7 +397,6 @@ contactForm.addEventListener('submit', function (e) {
         isValid = false;
     }
 
-    // Validate message
     if (!message) {
         showFieldError('message', 'Message is required');
         isValid = false;
@@ -337,7 +405,6 @@ contactForm.addEventListener('submit', function (e) {
         isValid = false;
     }
 
-    // If validation fails, show notification and return
     if (!isValid) {
         showNotification('Please fix the errors in the form', 'error');
         return;
@@ -355,7 +422,6 @@ contactForm.addEventListener('submit', function (e) {
         reply_to: email
     };
 
-    // EmailJS fallback check
     if (!window.emailjs) {
         fallbackMailto(name, email, message);
         resetBtn();
@@ -383,21 +449,18 @@ contactForm.addEventListener('submit', function (e) {
         const body = encodeURIComponent(
             `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
         );
-        window.location.href = `mailto:your@email.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:redshiftwebsolutions@gmail.com?subject=${subject}&body=${body}`;
         showNotification('Opening email client as backup...', 'success');
     }
 });
 
-
 // Notification function
 function showNotification(message, type) {
-    // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         existingNotification.remove();
     }
 
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -405,7 +468,6 @@ function showNotification(message, type) {
         <button class="notification-close">&times;</button>
     `;
 
-    // Add styles
     notification.style.cssText = `
         position: fixed;
         bottom: 30px;
@@ -436,28 +498,17 @@ function showNotification(message, type) {
 
     document.body.appendChild(notification);
 
-    // Animate in
-    gsap.from(notification, {
-        x: 100,
-        opacity: 0,
-        duration: 0.4,
-        ease: 'power3.out'
-    });
-
-    // Close button functionality
-    closeBtn.addEventListener('click', () => {
-        gsap.to(notification, {
+    if (!isMobile) {
+        gsap.from(notification, {
             x: 100,
             opacity: 0,
-            duration: 0.3,
-            ease: 'power3.in',
-            onComplete: () => notification.remove()
+            duration: 0.4,
+            ease: 'power3.out'
         });
-    });
+    }
 
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentElement) {
+    closeBtn.addEventListener('click', () => {
+        if (!isMobile) {
             gsap.to(notification, {
                 x: 100,
                 opacity: 0,
@@ -465,76 +516,24 @@ function showNotification(message, type) {
                 ease: 'power3.in',
                 onComplete: () => notification.remove()
             });
+        } else {
+            notification.remove();
+        }
+    });
+
+    setTimeout(() => {
+        if (notification.parentElement) {
+            if (!isMobile) {
+                gsap.to(notification, {
+                    x: 100,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: 'power3.in',
+                    onComplete: () => notification.remove()
+                });
+            } else {
+                notification.remove();
+            }
         }
     }, 5000);
 }
-
-// ===== Footer Animation =====
-gsap.from('.footer-content', {
-    scrollTrigger: {
-        trigger: '.footer',
-        start: 'top 95%',
-        toggleActions: 'play none none none'
-    },
-    y: 30,
-    opacity: 0,
-    duration: 0.6,
-    ease: 'power3.out'
-});
-
-// ===== Parallax Effect for Hero Background Elements =====
-window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const circles = document.querySelectorAll('.hero-circle');
-    const lines = document.querySelectorAll('.hero-line');
-
-    circles.forEach((circle, index) => {
-        const speed = 0.1 + (index * 0.05);
-        circle.style.transform = `translate(${scrolled * speed}px, ${scrolled * speed}px)`;
-    });
-
-    lines.forEach((line, index) => {
-        const speed = 0.05 + (index * 0.03);
-        line.style.transform = `scaleX(${1 + scrolled * 0.0005})`;
-    });
-});
-
-// ===== Button Hover Effect =====
-document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('mouseenter', function () {
-        gsap.to(this, {
-            scale: 1.02,
-            duration: 0.2,
-            ease: 'power2.out'
-        });
-    });
-
-    btn.addEventListener('mouseleave', function () {
-        gsap.to(this, {
-            scale: 1,
-            duration: 0.2,
-            ease: 'power2.out'
-        });
-    });
-});
-
-// ===== Service Card Hover Effect =====
-document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('mouseenter', function () {
-        gsap.to(this.querySelector('.service-icon svg'), {
-            scale: 1.15,
-            rotation: 5,
-            duration: 0.3,
-            ease: 'power2.out'
-        });
-    });
-
-    card.addEventListener('mouseleave', function () {
-        gsap.to(this.querySelector('.service-icon svg'), {
-            scale: 1,
-            rotation: 0,
-            duration: 0.3,
-            ease: 'power2.out'
-        });
-    });
-});
