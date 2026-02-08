@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Redshift Web Solutions - Reliable Web & IT Solutions for Growing Businesses. Professional website development, WordPress, Shopify, SEO, and maintenance services.">
+    <title>RedShift Web Solutions | Web & IT Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="logo">
+                <div class="logo-image">
+                    <!-- Add your logo image here -->
+                    <img src="assets/redshift-logo-only.webp" alt="Redshift Logo" class="logo-img">
+                </div>
+                <span class="logo-text">Red<span class="logo-red">Shift</span></span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#recent-works" class="nav-link">Our Works</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <!-- Vimeo Video Background -->
+        <div class="hero-video-wrapper">
+            <iframe
+                src="https://player.vimeo.com/video/1162964493?autoplay=1&loop=1&muted=1&background=1&quality=540p&dnt=1&playsinline=1"
+                frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"
+                class="hero-video">
+            </iframe>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">
+                <span class="hero-title-main">RedShift</span>
+                <span class="hero-title-sub">Web Solutions</span>
+            </h1>
+            <p class="hero-subtitle">Reliable Web & IT Solutions for Growing Businesses</p>
+            <div class="hero-buttons">
+                <a href="mailto:redshiftwebsolutions@gmail.com" class="btn btn-primary">Get a Free Consultation</a>
+                <a href="#contact" class="btn btn-secondary">Connect with us now</a>
+            </div>
+        </div>
+        <div class="hero-bg-elements">
+            <div class="hero-circle circle-1"></div>
+            <div class="hero-circle circle-2"></div>
+            <div class="hero-line line-1"></div>
+            <div class="hero-line line-2"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive solutions tailored to your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Website Development</h3>
+                    <p class="service-description">Custom-built, responsive websites designed to elevate your brand and
+                        drive conversions.</p>
+                </div>
+                <!-- <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">WordPress & Shopify Development</h3>
+                    <p class="service-description">Professional e-commerce and CMS solutions built on industry-leading
+                        platforms.</p>
+                </div> -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                            <path d="M11 8v6"></path>
+                            <path d="M8 11h6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">SEO & Performance Optimization</h3>
+                    <p class="service-description">Boost your search rankings and website speed for maximum visibility
+                        and user experience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Website Maintenance & Support</h3>
+                    <p class="service-description">Reliable ongoing support to keep your website secure, updated, and
+                        running smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Recent Works Section -->
+    <section class="recent-works" id="recent-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Our Recent Works</h2>
+                <p class="section-subtitle">Explore our latest projects and success stories that showcase our expertise
+                </p>
+            </div>
+            <div class="works-grid">
+                <!-- Project 1 -->
+                <a href="https://emigrateconsultancy.com/" class="work-item" target="_blank" rel="noopener noreferrer">
+                    <div class="work-image">
+                        <img src="assets/PROJECT 1.png" alt="Emigrate Consultancy">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-tags">
+                            <span class="work-tag">Website</span>
+                            <span class="work-tag">Web Design</span>
+                            <span class="work-tag">Visa Consultancy </span>
+                        </div>
+                        <h3 class="work-title">Emigrate Consultancy</h3>
+                        <p class="work-category">Website for Visa Consultancy Services</p>
+                        <span class="work-link">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="https://github.com/suraj-2807/smart-inventory" class="work-item" target="_blank"
+                    rel="noopener noreferrer">
+                    <div class="work-image">
+                        <img src="assets/Project 2.png" alt="Personal Portfolio">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-tags">
+                            <span class="work-tag">Inventory System</span>
+                            <span class="work-tag">ReactJS</span>
+                            <span class="work-tag">Firebase</span>
+                            <span class="work-tag">ExpressJS</span>
+                        </div>
+                        <h3 class="work-title">Inventory Management System</h3>
+                        <p class="work-category">Inventory system for a local business</p>
+                        <span class="work-link">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="https://bluecot.gt.tc/" class="work-item" target="_blank" rel="noopener noreferrer">
+                    <div class="work-image">
+                        <img src="assets/Project 3.png" alt="BlueCot E-commerce">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-tags">
+                            <span class="work-tag">Wordpress</span>
+                            <span class="work-tag">WooCommerce</span>
+                            <span class="work-tag">Elementor</span>
+                        </div>
+                        <h3 class="work-title">BlueCot</h3>
+                        <p class="work-category">E-commerce platform for a local business</p>
+                        <span class="work-link">
+                            View Project
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="works-cta">
+                <p>Want to see more of our work?</p>
+                <a href="#contact" class="btn btn-primary">Let's Discuss Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About Us</h2>
+                    <p class="about-description">
+                        <strong>Redshift Web Solutions</strong> is a modern IT firm dedicated to delivering exceptional
+                        web development and digital solutions. We combine technical expertise with creative vision to
+                        build websites that not only look stunning but also perform flawlessly.
+                    </p>
+                    <p class="about-description">
+                        Our team is committed to quality, reliability, and building long-term partnerships with our
+                        clients. We understand that your website is more than just an online presence—it's the digital
+                        face of your business. That's why we approach every project with meticulous attention to detail
+                        and a genuine passion for helping businesses succeed online.
+                    </p>
+                    <!-- <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="about-visual">
+                    <div class="about-shape"><img src="assets/logo-transparent.png" alt="Redshift Logo"
+                            class="logo-img"></div>
+                    <div class="about-accent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Ready to start your project? Contact us today</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="from_name" class="form-input" placeholder="Your Name"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-input form-textarea"
+                                placeholder="Tell us about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3 class="contact-info-title">Contact Information</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:redshiftwebsolutions@gmail.com"
+                                class="contact-link">redshiftwebsolutions@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">WhatsApp</span>
+                            <a href="https://wa.me/918200076892" class="contact-link" target="_blank">+91 82000
+                                76892</a> &nbsp / &nbsp
+                            <a href="https://wa.me/919645620022" class="contact-link" target="_blank">+91 96456
+                                20022</a>
+                        </div>
+                    </div>
+                    <!-- Social Links -->
+                    <div class="social-links">
+                        <span class="social-label">Follow Us</span>
+                        <div class="social-icons">
+                            <a href="https://www.instagram.com/redshift_web/" class="social-link" target="_blank"
+                                rel="noopener noreferrer" aria-label="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61587899873185" class="social-link"
+                                target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-cta">
+                        <p>Let's build something great together.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/redshift-logo-only.webp" alt="Redshift Logo" class="footer-logo-img">
+                    </div>
+                    <span class="footer-brand-text"><span class="logo-red">RedShift</span> Web Solutions</span>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/redshift_web/" class="footer-social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61587899873185" class="footer-social-link"
+                        target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                </div>
+                <p class="footer-text">© 2026 RedShift Web Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
