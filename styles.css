@@ -710,6 +710,19 @@ img {
     resize: vertical;
 }
 
+.form-error {
+    display: none;
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+.form-input-error {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -756,6 +769,7 @@ img {
     font-size: 1.05rem;
     font-weight: 500;
     color: var(--text-light);
+    word-break: break-all;
 }
 
 .contact-link:hover {
@@ -1024,6 +1038,13 @@ img {
 
     .btn {
         padding: 14px 28px;
+    }
+
+    .about-accent {
+        width: 100px;
+        height: 100px;
+        bottom: -36px;
+        right: -10px;
     }
 }
 

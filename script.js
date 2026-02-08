@@ -229,21 +229,117 @@ const EMAILJS_TEMPLATE_ID = 'template_znlt2iq'; // Replace with your EmailJS tem
 
 const contactForm = document.getElementById('contactForm');
 
+// Helper function to show field-specific errors
+function showFieldError(fieldId, message) {
+    const errorElement = document.getElementById(`${fieldId}Error`);
+    const inputElement = document.getElementById(fieldId);
+
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+    }
+
+    if (inputElement) {
+        inputElement.classList.add('form-input-error');
+    }
+}
+
+// Helper function to clear field errors
+function clearFieldError(fieldId) {
+    const errorElement = document.getElementById(`${fieldId}Error`);
+    const inputElement = document.getElementById(fieldId);
+
+    if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.style.display = 'none';
+    }
+
+    if (inputElement) {
+        inputElement.classList.remove('form-input-error');
+    }
+}
+
+// Clear all errors
+function clearAllErrors() {
+    ['name', 'email', 'message'].forEach(clearFieldError);
+}
+
+// Real-time validation for message field
+const messageField = document.getElementById('message');
+messageField.addEventListener('input', function () {
+    const messageLength = this.value.trim().length;
+    const errorElement = document.getElementById('messageError');
+
+    if (messageLength > 0 && messageLength < 20) {
+        errorElement.textContent = `Message must be at least 20 characters (${messageLength}/20)`;
+        errorElement.style.display = 'block';
+        errorElement.style.color = '#fbbf24'; // Warning color
+    } else if (messageLength >= 20) {
+        clearFieldError('message');
+    }
+});
+
+// Real-time validation for email field
+const emailField = document.getElementById('email');
+emailField.addEventListener('blur', function () {
+    const email = this.value.trim();
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (email && !emailRegex.test(email)) {
+        showFieldError('email', 'Please enter a valid email address');
+    } else {
+        clearFieldError('email');
+    }
+});
+
+emailField.addEventListener('input', function () {
+    if (this.value.trim()) {
+        clearFieldError('email');
+    }
+});
+
 contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
+    clearAllErrors();
 
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
 
-    if (!name || !email || !message) {
-        showNotification('Please fill in all fields', 'error');
-        return;
+    // Validation flags
+    let isValid = true;
+
+    // Validate name
+    if (!name) {
+        showFieldError('name', 'Name is required');
+        isValid = false;
+    } else if (name.length < 2) {
+        showFieldError('name', 'Name must be at least 2 characters');
+        isValid = false;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        showNotification('Please enter a valid email address', 'error');
+    // Validate email
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email) {
+        showFieldError('email', 'Email is required');
+        isValid = false;
+    } else if (!emailRegex.test(email)) {
+        showFieldError('email', 'Please enter a valid email address');
+        isValid = false;
+    }
+
+    // Validate message
+    if (!message) {
+        showFieldError('message', 'Message is required');
+        isValid = false;
+    } else if (message.length < 20) {
+        showFieldError('message', `Message must be at least 20 characters (currently ${message.length} characters)`);
+        isValid = false;
+    }
+
+    // If validation fails, show notification and return
+    if (!isValid) {
+        showNotification('Please fix the errors in the form', 'error');
         return;
     }
 
